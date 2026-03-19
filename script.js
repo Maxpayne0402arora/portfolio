@@ -117,6 +117,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Experience Section Collapsible (Mobile Only)
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    timelineItems.forEach(item => {
+        const content = item.querySelector('.timeline-content');
+        if (content) {
+            content.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    item.classList.toggle('expanded');
+                }
+            });
+        }
+    });
+
+
     // Modal support (kept for backward compat)
     const modal = document.getElementById('project-modal');
     const closeModalBtn = document.querySelector('.close-modal');

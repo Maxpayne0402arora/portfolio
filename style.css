@@ -985,17 +985,65 @@ footer {
         text-align: center;
     }
 
+    .hero-sidebar {
+        display: none;
+        /* Hide 'How I work' & 'Looking for' */
+    }
+
+    #skills {
+        display: none;
+        /* Hide Product Skills section */
+    }
+
     .nav-links {
         display: none;
     }
 
     .stats-bar {
-        flex-direction: column;
-        gap: 2rem;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .stat-item {
+        flex: 1 1 40%;
     }
 
     .stat-divider {
         display: none;
+    }
+
+    /* Experience Collapsible */
+    .timeline-content {
+        cursor: pointer;
+        position: relative;
+    }
+
+    .timeline-content::after {
+        content: '+';
+        position: absolute;
+        right: 1.5rem;
+        top: 2rem;
+        font-size: 1.5rem;
+        color: var(--primary-blue);
+        transition: transform 0.3s ease;
+    }
+
+    .timeline-item.expanded .timeline-content::after {
+        transform: rotate(45deg);
+    }
+
+    .timeline-content p,
+    .timeline-content .experience-list {
+        display: none;
+        margin-top: 1rem;
+    }
+
+    .timeline-item.expanded .timeline-content p,
+    .timeline-item.expanded .timeline-content .experience-list {
+        display: block;
     }
 
     /* Prototype Slider Mobile Optimization */
