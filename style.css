@@ -731,7 +731,33 @@ section {
     display: block;
     font-weight: 600;
     color: var(--text-secondary);
+    margin-bottom: 1.2rem;
+}
+
+.experience-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.experience-list li {
+    position: relative;
+    padding-left: 1.5rem;
     margin-bottom: 1rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+.experience-list li:last-child {
+    margin-bottom: 0;
+}
+
+.experience-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary-blue);
+    font-weight: bold;
 }
 
 /* Contact */
