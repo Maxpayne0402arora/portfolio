@@ -595,6 +595,13 @@ section {
 
 .proto-actions {
     margin-top: 0.5rem;
+    position: relative;
+    z-index: 20;
+}
+
+.proto-actions .btn-primary {
+    position: relative;
+    z-index: 20;
 }
 
 /* Dots */
@@ -989,6 +996,39 @@ footer {
 
     .stat-divider {
         display: none;
+    }
+
+    /* Prototype Slider Mobile Optimization */
+    .proto-slide {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+        gap: 2rem;
+    }
+
+    .phone-frame {
+        width: 240px;
+        height: 480px;
+        margin: 0 auto;
+    }
+
+    .proto-slide-content {
+        text-align: center;
+        align-items: center;
+    }
+
+    .proto-actions {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .proto-metrics {
+        justify-content: center;
+    }
+
+    .proto-tabs {
+        justify-content: center;
     }
 }
 
