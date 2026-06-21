@@ -77,8 +77,8 @@ ${RESUME_CONTEXT}`;
     const data = await response.json();
 
     if (!response.ok) {
-      console.error('Gemini API error:', data);
-      return { statusCode: 500, headers, body: JSON.stringify({ error: 'Failed to get response from AI' }) };
+      console.error('Gemini API error:', JSON.stringify(data));
+      return { statusCode: 500, headers, body: JSON.stringify({ error: data?.error?.message || 'Failed to get response from AI' }) };
     }
 
     const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Sorry, I could not generate a response.';
