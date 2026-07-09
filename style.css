@@ -1299,3 +1299,45 @@ footer {
     #chat-box { width: calc(100vw - 32px); }
     #chat-widget { bottom: 16px; right: 16px; }
 }
+
+/* ── Company Logos (Experience) ── */
+.company-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.2rem;
+}
+.company-header .company {
+    margin-bottom: 0;
+}
+.exp-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+.exp-logo svg {
+    width: 36px;
+    height: 36px;
+}
+
+/* ── Proto Tab Logo sizing ── */
+.proto-tab .tab-logo {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+.proto-icon-wrap svg {
+    width: 36px;
+    height: 36px;
+}
+.maps-brand {
+    background: #ffffff;
+}
+.cult-brand {
+    background: #1a1a1a;
+}

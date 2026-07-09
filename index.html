@@ -81,7 +81,7 @@
             <!-- Stats Bar -->
             <div class="stats-bar">
                 <div class="stat-item">
-                    <span class="stat-number">4+</span>
+                    <span class="stat-number">5+</span>
                     <span class="stat-label">Live Prototypes</span>
                 </div>
                 <div class="stat-divider"></div>
@@ -105,11 +105,11 @@
             <!-- Slider Tab Nav -->
             <div class="proto-tabs" id="proto-tabs">
                 <button class="proto-tab active" data-index="0">
-                    <i class="fab fa-uber"></i>
+                    <svg class="tab-logo" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M17.45 2H6.55C4.08 2 2 4.08 2 6.55v10.9C2 19.92 4.08 22 6.55 22h10.9C19.92 22 22 19.92 22 17.45V6.55C22 4.08 19.92 2 17.45 2zm-1.3 13.5H13.5V13h-3v2.5H7.85V8.5h2.65V11h3V8.5h2.65v7z"/></svg>
                     <span>Uber</span>
                 </button>
                 <button class="proto-tab" data-index="1">
-                    <i class="fas fa-map-marked-alt"></i>
+                    <svg class="tab-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#EA4335"/><path d="M12 2C8.13 2 5 5.13 5 9c0 2.5 1.3 4.7 3.25 6L12 22l3.75-7C17.7 13.7 19 11.5 19 9c0-3.87-3.13-7-7-7z" fill="#EA4335"/><circle cx="12" cy="9" r="3.5" fill="white"/></svg>
                     <span>Google Maps</span>
                 </button>
                 <button class="proto-tab" data-index="2">
@@ -117,8 +117,12 @@
                     <span>BBMP ParkEasy</span>
                 </button>
                 <button class="proto-tab" data-index="3">
-                    <i class="fas fa-dumbbell"></i>
+                    <svg class="tab-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="12" fill="#FF5722"/><text x="12" y="17" text-anchor="middle" font-size="14" font-weight="900" fill="white" font-family="Arial Black, Arial">C</text></svg>
                     <span>Cult.fit</span>
+                </button>
+                <button class="proto-tab" data-index="4">
+                    <i class="fas fa-pen-nib"></i>
+                    <span>Blogger AI</span>
                 </button>
             </div>
 
@@ -135,7 +139,7 @@
                         </div>
                         <div class="proto-slide-content">
                             <div class="proto-brand">
-                                <div class="proto-icon-wrap uber-brand"><i class="fab fa-uber fa-2x"></i></div>
+                                <div class="proto-icon-wrap uber-brand"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M28.5 8H11.5C9.57 8 8 9.57 8 11.5v17C8 30.43 9.57 32 11.5 32h17c1.93 0 3.5-1.57 3.5-3.5v-17C32 9.57 30.43 8 28.5 8zm-4 19H21V23h-6v4h-3.5V13H15v6h6v-6h3.5v14z" fill="white"/></svg></div>
                                 <span class="proto-label">PRODUCT PROTOTYPE</span>
                             </div>
                             <h3>Uber: Business Traveller Experience</h3>
@@ -172,8 +176,7 @@
                         </div>
                         <div class="proto-slide-content">
                             <div class="proto-brand">
-                                <div class="proto-icon-wrap maps-brand"><i class="fas fa-map-marked-alt fa-2x"></i>
-                                </div>
+                                <div class="proto-icon-wrap maps-brand"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M20 4C14.48 4 10 8.48 10 14c0 8.75 10 22 10 22s10-13.25 10-22c0-5.52-4.48-10-10-10z" fill="#EA4335"/><path d="M20 4C14.48 4 10 8.48 10 14c0 3.5 1.6 6.6 4.1 8.7L20 36l5.9-13.3C28.4 20.6 30 17.5 30 14c0-5.52-4.48-10-10-10z" fill="#EA4335"/><circle cx="20" cy="14" r="5" fill="white"/><circle cx="20" cy="14" r="2.5" fill="#4285F4"/></svg></div>
                                 <span class="proto-label">PRODUCT PROTOTYPE</span>
                             </div>
                             <h3>Google Maps: Never Late for Work</h3>
@@ -248,7 +251,7 @@
                         </div>
                         <div class="proto-slide-content">
                             <div class="proto-brand">
-                                <div class="proto-icon-wrap cult-brand"><i class="fas fa-dumbbell fa-2x"></i></div>
+                                <div class="proto-icon-wrap cult-brand"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="20" fill="#FF5722"/><text x="20" y="28" text-anchor="middle" font-size="26" font-weight="900" fill="white" font-family="Arial Black, Arial, sans-serif">C</text></svg></div>
                                 <span class="proto-label">PRODUCT PROTOTYPE</span>
                             </div>
                             <h3>Cult.fit: New User Habit Builder</h3>
@@ -276,6 +279,41 @@
                         </div>
                     </div>
 
+                    <!-- Slide 5: Blogger AI -->
+                    <div class="proto-slide" id="blogger-project">
+                        <div class="proto-slide-image">
+                            <div class="phone-frame">
+                                <img src="img_blogger.png" alt="Blogger Agent Prototype">
+                            </div>
+                        </div>
+                        <div class="proto-slide-content">
+                            <div class="proto-brand">
+                                <div class="proto-icon-wrap blogger-brand" style="background: #8B5CF6;"><i class="fas fa-robot fa-2x"></i></div>
+                                <span class="proto-label">PRODUCT PROTOTYPE</span>
+                            </div>
+                            <h3>Blogger: Multi-Agent Content Engine</h3>
+                            <p class="proto-desc">A production-ready collaborative multi-agent workflow that plans, drafts, reviews, and validates technical blog articles autonomously — ensuring zero hallucinations and perfect skimmability.</p>
+                            <div class="proto-metrics">
+                                <div class="proto-metric">
+                                    <span class="pm-value">90%</span>
+                                    <span class="pm-label">Drafting Time Saved</span>
+                                </div>
+                                <div class="proto-metric">
+                                    <span class="pm-value">3.5×</span>
+                                    <span class="pm-label">Content Velocity</span>
+                                </div>
+                                <div class="proto-metric">
+                                    <span class="pm-value">100%</span>
+                                    <span class="pm-label">Self-Validation Rate</span>
+                                </div>
+                            </div>
+                            <div class="proto-actions">
+                                <a href="http://127.0.0.1:8008/blogger" target="_blank" class="btn-primary"><i
+                                        class="fas fa-external-link-alt"></i> Launch Prototype</a>
+                            </div>
+                        </div>
+                    </div>
+
                 </div><!-- /.proto-slider -->
             </div><!-- /.proto-slider-wrapper -->
 
@@ -285,6 +323,7 @@
                 <button class="proto-dot" data-index="1"></button>
                 <button class="proto-dot" data-index="2"></button>
                 <button class="proto-dot" data-index="3"></button>
+                <button class="proto-dot" data-index="4"></button>
             </div>
         </section>
 
@@ -335,7 +374,12 @@
                     <div class="timeline-content">
                         <span class="date">2024 October - Present</span>
                         <h3>Senior Product Manager</h3>
-                        <span class="company">Tata CliQ</span>
+                        <div class="company-header">
+                            <div class="exp-logo tatacliq-logo">
+                                <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="20" fill="#1B1464"/><text x="20" y="24" text-anchor="middle" font-size="11" font-weight="900" fill="#C9A84C" font-family="Arial Black, Arial, sans-serif">CliQ</text></svg>
+                            </div>
+                            <span class="company">Tata CliQ</span>
+                        </div>
                         <ul class="experience-list">
                             <li><strong>Seamless payments:</strong> Launched CVV-less payments, International card
                                 transactions, and Native OTP to improve payment success rate from 75% to 80%, improving
@@ -372,7 +416,12 @@
                     <div class="timeline-content">
                         <span class="date">2021 Aug - 2022 March</span>
                         <h3>Management Development Program – Product & Program Management</h3>
-                        <span class="company">Ola Electric Mobility</span>
+                        <div class="company-header">
+                            <div class="exp-logo ola-logo">
+                                <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="20" fill="#0F9C4E"/><polygon points="22,8 14,22 20,22 18,32 26,18 20,18" fill="white"/></svg>
+                            </div>
+                            <span class="company">Ola Electric Mobility</span>
+                        </div>
                         <ul class="experience-list">
                             <li><strong>D2C Purchase Journey:</strong> Orchestrated the end-to-end D2C digital purchase journey for Ola scooters, integrating financing, registration, and order fulfillment into a mobile-first experience, driving ₹4 Cr in monthly sales growth.</li>
                             <li><strong>Financing Funnel Optimization:</strong> Optimized the financing funnel through data-driven enhancements and friction-point elimination, increasing loan conversion rates by 30% and generating ₹5 Cr in incremental sales.</li>
@@ -384,7 +433,12 @@
                     <div class="timeline-content">
                         <span class="date">2016 June - 2020 March</span>
                         <h3>Deputy Manager – Product & Business Strategy</h3>
-                        <span class="company">Volvo Eicher Commercial Vehicles</span>
+                        <div class="company-header">
+                            <div class="exp-logo volvo-logo">
+                                <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="20" fill="#003057"/><circle cx="18" cy="22" r="7" fill="none" stroke="white" stroke-width="2.2"/><line x1="23.5" y1="16.5" x2="30" y2="10" stroke="white" stroke-width="2.2"/><polyline points="26,10 30,10 30,14" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                            <span class="company">Volvo Eicher Commercial Vehicles</span>
+                        </div>
                         <ul class="experience-list">
                             <li><strong>Market Intelligence:</strong> Led customer research and competitive benchmarking, shaping mining segment product strategies that improved vehicle availability by 10% and delivered a 15% sales uplift (~₹15 Cr impact).</li>
                             <li><strong>Design Thinking:</strong> Applied design-thinking methodologies to optimize logistics workflows, reducing delivery and unloading TAT by 6 hours and improving truck utilization by 15%.</li>
