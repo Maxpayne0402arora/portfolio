@@ -1,0 +1,82 @@
+{
+  "_note": "Pre-computed recommendations used when the live model call is unavailable (no key, quota, offline, or an API error). Same schema the Netlify function returns, so the UI cannot tell the difference. Every 'after' string here is re-validated in the browser against the T1 rules at render time — nothing is trusted because it was cached.",
+  "CIQ-DCT-001": {
+    "source": "cached",
+    "edits": [
+      {
+        "field": "title",
+        "before": "PawJoy Dog Chew Toy Best Durable Tough Indestructible Chew Toys for Aggressive Chewers Large Dogs Puppy Teething Toy Non Toxic Rubber Bone Great Gift!!!",
+        "after": "PawJoy Rubber Chew Bone for Aggressive Chewers, Large Dogs, Bone Shape",
+        "why": "Strips the subjective claims and the exclamation marks that put the listing at risk, drops the keyword stuffing, and keeps the terms a shopper actually searches. Length falls from 152 to 70 characters, in line with what competitors run.",
+        "rule_ids": ["AMZ-TITLE-04", "AMZ-TITLE-05", "AMZ-TITLE-02", "AMZ-RESTRICT-04"],
+        "competitor_reference": "Nylabone runs 83 characters and KONG 34, both leading with brand, product type and size and carrying no claims at all.",
+        "needs_client_input": true,
+        "input_needed": "\"Indestructible\" and \"Non Toxic\" were removed rather than reworded — nothing in the source data substantiates either. If PawJoy holds a safety certification, the claim can go back in with the certification named."
+      },
+      {
+        "field": "bullets",
+        "before": "SUPER DURABLE - our toy is the BEST on the market and will NEVER break | Great for dogs of all sizes and ages | Made with rubber material | Helps with teeth | Buy now and save!",
+        "after": "Solid rubber build: Made from rubber that stands up to repeated chewing from strong chewers | Bone shape: Easy for dogs to grip and pick up off the floor during play | For aggressive chewers: Shaped for dogs that chew hard rather than gentle nibblers | Suits a range of ages: Suitable for puppies through to adult dogs | Supervised use: Always supervise your dog during use and replace the toy if pieces break off",
+        "why": "The bullet count was already at the maximum — the problem was substance, at 33 characters against a competitor average of 125. Each bullet now leads with a header and says what the feature means for the dog, and the promotional bullet is replaced with the supervision guidance both competitors carry.",
+        "rule_ids": ["AMZ-BULLET-03", "AMZ-BULLET-04", "AMZ-BULLET-05", "AMZ-BULLET-07", "AMZ-RESTRICT-01", "AMZ-RESTRICT-03"],
+        "competitor_reference": "Nylabone closes with \"SAFE FOR LARGE BREEDS: Recommended for dogs 50 lbs and up; always supervise pets with any chew toy\"; KONG carries the same supervision framing.",
+        "needs_client_input": true,
+        "input_needed": "The source listing contradicts itself: the title says \"Large Dogs\" while bullet 2 says \"all sizes and ages\". We need the intended size range before writing a sizing bullet, which is the one place competitors give a hard number (Nylabone: 50 lbs and up)."
+      },
+      {
+        "field": "description",
+        "before": "Looking for the best chew toy for your dog? PawJoy is proud to bring you our #1 rated chew toy that dogs LOVE! This amazing product is made of durable rubber and is perfect for aggressive chewers. Great gift idea for any dog owner. Order today while supplies last! 100% satisfaction guaranteed or your money back, no questions asked. Free shipping on all orders over $25. Don't miss out on this incredible deal!",
+        "after": "The PawJoy chew bone is made from rubber and shaped to give dogs something firm to work at during long chew sessions. The bone shape is easy for a dog to grip and pick up off the floor.\n\nAlways supervise your dog during use, check the toy regularly for damage, and replace it if pieces break off.\n\nRinse with warm water and mild soap between uses.",
+        "why": "The original spends its entire length on promotion and carries the heaviest concentration of restricted content in the listing — guarantees, pricing, shipping terms, a rating claim and urgency language. The rewrite moves to third-person product detail and adds the care and safety notes the rules ask a description to carry.",
+        "rule_ids": ["AMZ-DESC-02", "AMZ-DESC-03", "AMZ-DESC-05", "AMZ-RESTRICT-01", "AMZ-RESTRICT-02", "AMZ-RESTRICT-03", "AMZ-RESTRICT-04", "AMZ-RESTRICT-05"],
+        "competitor_reference": "Nylabone and KONG both use the description for construction, use case and a safety note — KONG closes on supervision and replacement, which is the shape used here.",
+        "needs_client_input": false
+      }
+    ],
+    "not_touching": [
+      { "item": "Image set", "rule_ids": ["AMZ-IMG-02", "AMZ-IMG-03"], "reason": "The data holds image URLs, not pixels. Background, framing and resolution can't be judged from a URL, and no rewrite produces a photograph. The count gap (2 against a 5–7 best practice) is reported; the fix is a creative brief, not a text edit." },
+      { "item": "Backend search terms", "rule_ids": ["AMZ-KW-01"], "reason": "No backend keyword field exists in the supplied data, and the ruleset itself marks this rule as not assessed by the skill." },
+      { "item": "\"Non Toxic\" and \"Indestructible\" claims", "rule_ids": ["AMZ-BULLET-07", "AMZ-RESTRICT-04"], "reason": "Removed, not reworded. Restoring either needs a fact the brand holds and the data doesn't — a certification or a materials spec." }
+    ]
+  },
+  "CIQ-SPW-001": {
+    "source": "cached",
+    "edits": [
+      {
+        "field": "title",
+        "before": "FizzWave Sparkling Water Natural Flavor Variety Pack 12 Cans BEST TASTING Zero Calorie Zero Sugar Zero Sodium Naturally Flavored Sparkling Water Drink Cans Pack of 12 CHEAP DEAL",
+        "after": "FizzWave Sparkling Water Variety Pack, Zero Sugar, Zero Calories, 12 Fl Oz Cans (12 Pack)",
+        "why": "Removes the all-caps promotional blocks and the duplicated pack description, cutting 177 characters to 88 while keeping every term a shopper searches on. The pack size now appears once, in the position competitors use.",
+        "rule_ids": ["AMZ-TITLE-03", "AMZ-TITLE-04", "AMZ-TITLE-05", "AMZ-TITLE-02", "AMZ-RESTRICT-01", "AMZ-RESTRICT-04"],
+        "competitor_reference": "LaCroix runs 73 characters and bubly 58, both naming the flavour in the title; FizzWave repeated \"Sparkling Water\" three times and \"Zero\" three times instead.",
+        "needs_client_input": true,
+        "input_needed": "The listing says \"Variety Pack\" but never names a flavour anywhere. LaCroix (Pamplemousse), Spindrift (Raspberry Lime) and bubly (Strawberry) all name theirs in the title. We need the flavour line-up — this is the single largest discoverability gap and no model can fill it."
+      },
+      {
+        "field": "bullets",
+        "before": "Tastes amazing, you will love it | Zero calories | Comes in a pack of 12 | Great for parties or everyday | 100% GUARANTEED to be the best sparkling water you've ever had or your money back!!!",
+        "after": "Zero sugar, zero calories: Every 12 fl oz can is free from sugar and calories | No sodium: Contains no sodium | Naturally flavoured: Flavour comes from natural flavouring rather than added sweetness | Variety pack of 12: Twelve 12 fl oz cans in one pack | Serve chilled or over ice: Works on its own, alongside a meal, or as a mixer",
+        "why": "Bullets averaged 36 characters against a competitor average of 90, with the last one carrying a money-back guarantee. Each bullet now leads with a header and states a verifiable attribute drawn from the listing's own copy.",
+        "rule_ids": ["AMZ-BULLET-03", "AMZ-BULLET-04", "AMZ-BULLET-05", "AMZ-BULLET-07", "AMZ-RESTRICT-03", "AMZ-RESTRICT-04"],
+        "competitor_reference": "LaCroix opens with \"NO CALORIES, NO SWEETENERS, NO SODIUM\" and bubly with \"ZERO CALORIES, ZERO SUGAR\" — both put the attribute in the header and the detail in the sentence.",
+        "needs_client_input": true,
+        "input_needed": "Bullet 4 can name the flavours in the pack once the brand supplies them. Competitors also state sweetener status and packaging material (LaCroix: recyclable aluminium; Spindrift: non-GMO and vegan) — none of that is in FizzWave's data, so it was left out rather than assumed."
+      },
+      {
+        "field": "description",
+        "before": "FizzWave is here to change the sparkling water game forever! Our cans are packed with flavor and ZERO calories, ZERO sugar. Perfect for anyone on keto, diet, or just trying to be healthy. Cheapest price on Amazon, buy 2 packs and save even more! Great for the whole family. 5 star rated by our customers. Order now before this deal ends!",
+        "after": "FizzWave sparkling water comes as a variety pack of twelve 12 fl oz cans, with no sugar, no calories and no sodium in any can. The flavour comes from natural flavouring rather than added sweetness, so each can keeps a light taste.\n\nThe pack suits everyday drinking at home or at work, and the cans work on their own, alongside a meal, or as a mixer.\n\n[Flavour line-up to be confirmed by the brand before publishing.]",
+        "why": "The original carries pricing, urgency, a customer-rating claim and first-person seller voice, and at 337 characters is the shortest description in the group against a competitor average of 456. The rewrite keeps only what the source data supports.",
+        "rule_ids": ["AMZ-DESC-02", "AMZ-DESC-03", "AMZ-DESC-05", "AMZ-RESTRICT-01", "AMZ-RESTRICT-02", "AMZ-RESTRICT-05"],
+        "competitor_reference": "Spindrift runs 523 characters covering sourcing, calorie count and certifications; LaCroix covers flavour origin and serving suggestions.",
+        "needs_client_input": true,
+        "input_needed": "The bracketed line is deliberate: the description cannot be finished without the flavour list. The tool leaves the gap visible rather than inventing flavours."
+      }
+    ],
+    "not_touching": [
+      { "item": "Image set", "rule_ids": ["AMZ-IMG-02", "AMZ-IMG-03"], "reason": "Only one image against a 5–7 best practice, and the lowest count in the group. But background, framing and resolution need the pixels, and no rewrite produces a photograph — this goes to the creative team as a brief." },
+      { "item": "Diet and health framing", "rule_ids": ["AMZ-BULLET-07"], "reason": "The original description positions the product for keto and dieting. That is an unverifiable health claim, so it was dropped rather than rewritten — the zero-sugar and zero-calorie attributes carry the same information without the claim." },
+      { "item": "Backend search terms", "rule_ids": ["AMZ-KW-01"], "reason": "No backend keyword field in the supplied data, and the ruleset marks the rule as not assessed by this skill." }
+    ]
+  }
+}

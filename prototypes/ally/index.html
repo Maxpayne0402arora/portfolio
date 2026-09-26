@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ally — Competitor Content Intelligence | Mayank Arora</title>
+  <meta name="description"
+    content="A product prototype: compares a client SKU's Amazon listing against its competitive shelf, cites the rule behind every finding, and drafts compliant copy a human approves before export.">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="topbar">
+    <div class="wrap">
+      <div class="brand">
+        <span class="dot">A</span>
+        <span>Ally<small>Competitor Content Intelligence</small></span>
+      </div>
+      <div class="spacer"></div>
+      <span class="chip" id="ruleset-chip">Ruleset: <b>loading…</b></span>
+      <a class="back" href="../../index.html">← Portfolio</a>
+    </div>
+  </div>
+
+  <main class="wrap">
+
+    <section class="hero">
+      <h1>Compliance keeps you listed. <em>Competitive content wins the click.</em></h1>
+      <p class="lede">
+        Most content tools answer one question: does this listing break the retailer's rules? That's necessary and
+        it isn't enough — a listing can be perfectly compliant and still lose every click to the three products sitting
+        next to it. This prototype answers the second question too, and then does the part tools usually leave to the
+        user: it drafts the fix, cites the rule behind it, and shows its evidence from the shelf.
+      </p>
+      <div class="pitch">
+        <span>Rules run in code · judgment runs on a model</span>
+        <span>Every edit cites a rule ID</span>
+        <span>Never invents a product fact</span>
+        <span>Human approves before anything ships</span>
+      </div>
+    </section>
+
+    <!-- 1. SKU selection -->
+    <section class="block">
+      <div class="step"><span class="n">STEP 1</span>
+        <h2>Pick a SKU</h2>
+      </div>
+      <p class="step-sub">Two client listings, each against its own competitive set. The dataset ships with a
+        <code>competitor_group</code> column, so selection is a lookup here — where it's absent, the set is built from
+        the category path plus similarity on title and attributes, excluding the client's own brand.
+      </p>
+      <div class="sku-grid" id="sku-grid"></div>
+    </section>
+
+    <div id="analysis" class="hidden">
+
+      <!-- 2. Scorecard -->
+      <section class="block">
+        <div class="step"><span class="n">STEP 2</span>
+          <h2>The shelf, measured</h2>
+        </div>
+        <p class="step-sub">Where this listing sits against the products it competes with, before any opinion is
+          offered.</p>
+        <div class="table-scroll">
+          <table class="score">
+            <thead>
+              <tr>
+                <th>Brand</th>
+                <th>Title chars</th>
+                <th>Bullets</th>
+                <th>Avg bullet</th>
+                <th>Description</th>
+                <th>Images</th>
+                <th>Rule violations</th>
+              </tr>
+            </thead>
+            <tbody id="score-body"></tbody>
+          </table>
+        </div>
+        <div class="read" id="score-read"></div>
+      </section>
+
+      <!-- 3. Findings -->
+      <section class="block">
+        <div class="step"><span class="n">STEP 3</span>
+          <h2>What's wrong, and how we know</h2>
+        </div>
+        <p class="step-sub">Two kinds of finding, kept visibly apart. <b>Compliance</b> comes from the supplied ruleset
+          and is judged listing by listing. <b>Competitive</b> comes from the shelf and has no rule behind it — a
+          listing can pass every rule and still be the thinnest page in its category.</p>
+        <div class="tabs" id="finding-tabs"></div>
+        <div id="findings"></div>
+      </section>
+
+      <!-- 4. Recommendations -->
+      <section class="block">
+        <div class="step"><span class="n">STEP 4</span>
+          <h2>The three edits that matter most</h2>
+        </div>
+        <p class="step-sub">Ranked compliance risk first, then discoverability, then conversion — and spread across
+          fields, because three fixes to one field is one fix. Each proposed edit is re-checked against the ruleset
+          after it's written, not before.</p>
+        <div class="run-row">
+          <button class="btn" id="run-btn">Generate recommendations</button>
+          <span class="src-note" id="src-note"></span>
+        </div>
+        <div id="edits"></div>
+      </section>
+
+      <!-- 5. Not touching -->
+      <section class="block">
+        <div class="step"><span class="n">STEP 5</span>
+          <h2>What we're deliberately not touching</h2>
+        </div>
+        <p class="step-sub">The section most tools skip. A recommendation the user can't act on is noise, and a claim
+          the data can't support is a liability.</p>
+        <div class="nt" id="not-touching"></div>
+      </section>
+
+      <!-- export -->
+      <div class="export-bar" id="export-bar">
+        <div class="wrap">
+          <span class="status" id="export-status">Approve or edit the recommendations above to build the summary.</span>
+          <button class="btn ghost sm" id="approve-all">Approve all</button>
+          <button class="btn sm" id="export-btn" disabled>Export Markdown</button>
+        </div>
+      </div>
+      <pre class="md-out hidden" id="md-out"></pre>
+
+    </div>
+
+    <!-- architecture -->
+    <section class="block">
+      <div class="step"><span class="n">UNDER THE HOOD</span>
+        <h2>Why it's built this way</h2>
+      </div>
+      <p class="step-sub">The design decisions an evaluator would ask about, stated up front.</p>
+      <div class="arch">
+        <div class="arch-card">
+          <div class="t">TIERED RULES</div>
+          <h4>The model doesn't count</h4>
+          <p>Every rule is tagged T1 (checkable in code), T2 (needs judgment) or T3 (a real gap that text can't fix). A
+            model asked to count characters is slower and less reliable than <code>length</code>. Judgment is where a
+            model earns its place.</p>
+        </div>
+        <div class="arch-card">
+          <div class="t">RULES AS DATA</div>
+          <h4>Guidelines are a file, not code</h4>
+          <p>The ruleset loads from JSON with its own source and version. A different retailer, or an updated policy,
+            is a new file — not a rewrite. That's also why every finding can cite an ID.</p>
+        </div>
+        <div class="arch-card">
+          <div class="t">VALIDATE AFTER</div>
+          <h4>Generated copy is re-checked</h4>
+          <p>Whatever the model writes goes back through the same deterministic checks before a human sees it. A
+            rewrite that fixes one rule and breaks another is caught here, not in Seller Central.</p>
+        </div>
+        <div class="arch-card">
+          <div class="t">KNOWN UNKNOWNS</div>
+          <h4>Missing facts get flagged, not invented</h4>
+          <p>Where an improvement needs a fact the data doesn't hold — a flavour name, a size range, a certification —
+            the edit stops and asks. Hallucinated product claims are the one failure mode that costs a brand more than
+            bad copy.</p>
+        </div>
+        <div class="arch-card">
+          <div class="t">GRACEFUL FALLBACK</div>
+          <h4>The demo can't die</h4>
+          <p>Deterministic analysis runs entirely in the browser. The drafting step calls a model through a serverless
+            function, and falls back to pre-computed recommendations if the call fails — which are then validated the
+            same way.</p>
+        </div>
+        <div class="arch-card">
+          <div class="t">V2</div>
+          <h4>Where this goes next</h4>
+          <p>Catalogue-wide, prioritised by revenue at risk rather than SKU by SKU; continuous monitoring that fires
+            when a competitor updates their page; and optimising for conversational shopping queries, not just keyword
+            search.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      Built by <a href="../../index.html">Mayank Arora</a> as a product prototype. Ruleset and sample catalogue are the
+      supplied assignment files; no external retailer documentation is loaded. Competitor copy is used as evidence of a
+      gap, never as a template to copy.
+    </div>
+  </footer>
+
+  <script src="engine.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>

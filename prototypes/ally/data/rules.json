@@ -1,0 +1,194 @@
+{
+  "ruleset": {
+    "name": "Amazon Listing Content Guidelines",
+    "source": "amazon_content_guidelines.md (supplied with the assignment)",
+    "version": "1.0",
+    "note": "This is the only ruleset loaded. No external retailer documentation is used. Every recommendation cites these IDs. Rules are data, not code: a different retailer or an updated policy loads as a new file without touching the engine.",
+    "tiers": {
+      "T1": "Objectively checkable from the text. Deterministic code, no model.",
+      "T2": "Needs reading comprehension or quality judgment. LLM, with the rule supplied as context.",
+      "T3": "Real gap, but not fixable from the fields we hold. Surfaced, never auto-edited."
+    }
+  },
+  "rules": [
+    {
+      "id": "AMZ-TITLE-01", "section": "Product Title", "name": "Length",
+      "text": "Keep titles under 200 characters including spaces. Shorter, scannable titles (~80-150 characters) generally perform better on mobile.",
+      "fields": ["title"], "tier": "T1", "impact": "discoverability",
+      "check": { "type": "max_length", "limit": 200, "advisory_max": 150 }
+    },
+    {
+      "id": "AMZ-TITLE-02", "section": "Product Title", "name": "Structure",
+      "text": "Recommended pattern: Brand + Model/Key Feature + Product Type + Size/Count/Color (if applicable).",
+      "fields": ["title"], "tier": "T2", "impact": "discoverability",
+      "check": { "type": "judgment", "criterion": "Does the title follow Brand + Key Feature + Product Type + Size/Count/Colour, with the most important information first?" }
+    },
+    {
+      "id": "AMZ-TITLE-03", "section": "Product Title", "name": "Capitalization",
+      "text": "Capitalize the first letter of each word (title case). Do not write in ALL CAPS.",
+      "fields": ["title"], "tier": "T1", "impact": "compliance",
+      "check": { "type": "caps_run", "min_run_words": 2 }
+    },
+    {
+      "id": "AMZ-TITLE-04", "section": "Product Title", "name": "No promotional or subjective claims",
+      "text": "Do not include phrases like \"Best\", \"#1\", \"Cheap\", \"Sale\", \"Free Shipping\", \"100% Guaranteed\", or excessive punctuation (e.g. \"!!!\").",
+      "fields": ["title"], "tier": "T1", "impact": "compliance",
+      "check": { "type": "banned_terms", "terms": ["best", "#1", "cheap", "sale", "free shipping", "100% guaranteed", "guaranteed", "deal"], "patterns": ["[!?]{2,}"] }
+    },
+    {
+      "id": "AMZ-TITLE-05", "section": "Product Title", "name": "No keyword stuffing",
+      "text": "Do not repeat the same keyword multiple times or cram unrelated search terms into the title.",
+      "fields": ["title"], "tier": "T1", "impact": "discoverability",
+      "check": { "type": "repetition", "max_occurrences": 2, "min_word_length": 3 }
+    },
+    {
+      "id": "AMZ-TITLE-06", "section": "Product Title", "name": "Required identifiers",
+      "text": "Include size, count, color, or flavor when the product has variants, so customers can distinguish this SKU from others.",
+      "fields": ["title"], "tier": "T2", "impact": "discoverability",
+      "check": { "type": "judgment", "criterion": "Does the title name the specific variant (size, count, colour or flavour) so a shopper can tell this SKU from its siblings?" }
+    },
+
+    {
+      "id": "AMZ-BULLET-01", "section": "Bullet Points", "name": "Count",
+      "text": "Use up to 5 bullet points.",
+      "fields": ["bullets"], "tier": "T1", "impact": "conversion",
+      "check": { "type": "max_count", "limit": 5 }
+    },
+    {
+      "id": "AMZ-BULLET-02", "section": "Bullet Points", "name": "Length",
+      "text": "Keep each bullet under roughly 200-255 characters; lead with the most important information first.",
+      "fields": ["bullets"], "tier": "T1", "impact": "conversion",
+      "check": { "type": "max_length", "limit": 255, "per_item": true }
+    },
+    {
+      "id": "AMZ-BULLET-03", "section": "Bullet Points", "name": "Format",
+      "text": "Start each bullet with a short capitalized header phrase (e.g. \"DURABLE DESIGN:\") followed by a benefit-oriented sentence. Avoid ending with a period if using a fragment style, but be consistent.",
+      "fields": ["bullets"], "tier": "T1", "impact": "conversion",
+      "check": { "type": "header_format", "pattern": "^[^:]{2,40}:\\s" }
+    },
+    {
+      "id": "AMZ-BULLET-04", "section": "Bullet Points", "name": "Benefits, not just features",
+      "text": "Explain what the feature means for the customer (e.g. not just \"rubber material\" but \"durable rubber construction stands up to aggressive chewing\").",
+      "fields": ["bullets"], "tier": "T2", "impact": "conversion",
+      "check": { "type": "judgment", "criterion": "Does each bullet explain what the feature means for the shopper, rather than only naming the feature?" }
+    },
+    {
+      "id": "AMZ-BULLET-05", "section": "Bullet Points", "name": "No pricing, promotions or shipping claims",
+      "text": "Do not mention price, discounts, deals, or shipping/guarantee terms in bullets - these belong in seller-controlled merchandising, not content.",
+      "fields": ["bullets"], "tier": "T1", "impact": "compliance",
+      "check": { "type": "banned_terms", "terms": ["buy now", "save", "discount", "deal", "sale", "free shipping", "money back", "guarantee", "guaranteed", "price", "cheap"] }
+    },
+    {
+      "id": "AMZ-BULLET-06", "section": "Bullet Points", "name": "No ALL CAPS sentences",
+      "text": "Emphasis words may be capitalized (e.g. a short header), but full bullets should not be written in all caps.",
+      "fields": ["bullets"], "tier": "T1", "impact": "compliance",
+      "check": { "type": "caps_ratio", "max_ratio": 0.4, "ignore_header": true }
+    },
+    {
+      "id": "AMZ-BULLET-07", "section": "Bullet Points", "name": "No unverifiable superlative or medical claims",
+      "text": "Avoid \"best\", \"cures\", \"guaranteed\", \"clinically proven\" (unless substantiated with certification), or claims about health/safety benefits that cannot be verified.",
+      "fields": ["bullets"], "tier": "T1", "impact": "compliance",
+      "check": { "type": "banned_terms", "terms": ["best", "cures", "guaranteed", "clinically proven", "never break", "indestructible", "non toxic", "non-toxic", "vet recommended", "veterinarian recommended"] }
+    },
+
+    {
+      "id": "AMZ-DESC-01", "section": "Product Description", "name": "Length",
+      "text": "Up to approximately 2,000 characters. Use complete sentences and short paragraphs (avoid a single wall of text).",
+      "fields": ["description"], "tier": "T1", "impact": "conversion",
+      "check": { "type": "max_length", "limit": 2000 }
+    },
+    {
+      "id": "AMZ-DESC-02", "section": "Product Description", "name": "Content",
+      "text": "Expand on bullet points with use-case context, materials, care instructions, sizing guidance, and any relevant compliance/safety notes (e.g. \"always supervise pets during use\").",
+      "fields": ["description"], "tier": "T2", "impact": "conversion",
+      "check": { "type": "judgment", "criterion": "Does the description add use-case context, materials, care or sizing guidance and any safety note, beyond repeating the bullets?" }
+    },
+    {
+      "id": "AMZ-DESC-03", "section": "Product Description", "name": "No contact info, external links or promotional pricing",
+      "text": "Do not include phone numbers, email addresses, URLs to external websites, or pricing/promotional language (\"buy now,\" \"limited time,\" \"free shipping\").",
+      "fields": ["description"], "tier": "T1", "impact": "compliance",
+      "check": { "type": "banned_terms", "terms": ["buy now", "order now", "order today", "limited time", "free shipping", "while supplies last", "cheapest price", "save even more", "don't miss out", "deal ends"], "patterns": ["https?://", "[\\w.]+@[\\w.]+\\.[a-z]{2,}", "\\+?\\d[\\d\\-\\s]{8,}\\d"] }
+    },
+    {
+      "id": "AMZ-DESC-04", "section": "Product Description", "name": "No HTML",
+      "text": "Do not paste raw HTML tags into the description field.",
+      "fields": ["description"], "tier": "T1", "impact": "compliance",
+      "check": { "type": "banned_terms", "terms": [], "patterns": ["</?[a-z][^>]*>"] }
+    },
+    {
+      "id": "AMZ-DESC-05", "section": "Product Description", "name": "Consistent tone",
+      "text": "Avoid first-person seller voice (\"we are proud to bring you...\") - write in an informative, third-person, customer-facing tone.",
+      "fields": ["description"], "tier": "T1", "impact": "conversion",
+      "check": { "type": "banned_terms", "terms": ["we are proud", "is proud to", "our cans", "our toy", "our product", "we bring you", "is here to change"] }
+    },
+
+    {
+      "id": "AMZ-IMG-01", "section": "Images", "name": "Minimum count",
+      "text": "Provide a minimum of 1 main image; best practice is 5-7 images including main + lifestyle + infographic + size/scale reference.",
+      "fields": ["images"], "tier": "T1", "impact": "conversion",
+      "check": { "type": "min_count", "minimum": 1, "best_practice": 5 }
+    },
+    {
+      "id": "AMZ-IMG-02", "section": "Images", "name": "Main image requirements",
+      "text": "Pure white (RGB 255,255,255) background, product fills ~85% of frame, no text/logos/watermarks/props on the main image.",
+      "fields": ["images"], "tier": "T3", "impact": "conversion",
+      "check": { "type": "gap_signal", "reason": "Needs the image pixels. The CSV holds URLs only, so this is reported, never auto-fixed." }
+    },
+    {
+      "id": "AMZ-IMG-03", "section": "Images", "name": "Resolution",
+      "text": "At least 1000px on the longest side to enable zoom functionality.",
+      "fields": ["images"], "tier": "T3", "impact": "conversion",
+      "check": { "type": "gap_signal", "reason": "Needs the image pixels. Reported as a gap for the creative team." }
+    },
+
+    {
+      "id": "AMZ-RESTRICT-01", "section": "Prohibited / Restricted", "name": "No pricing or promotional claims",
+      "text": "No pricing or promotional claims anywhere in title, bullets, or description (\"sale,\" \"best price,\" \"cheap,\" \"discount,\" \"free gift\").",
+      "fields": ["title", "bullets", "description"], "tier": "T1", "impact": "compliance",
+      "check": { "type": "banned_terms", "terms": ["sale", "best price", "cheap", "cheapest", "discount", "free gift", "save", "deal"] }
+    },
+    {
+      "id": "AMZ-RESTRICT-02", "section": "Prohibited / Restricted", "name": "No time-sensitive claims",
+      "text": "No time-sensitive claims (\"order now,\" \"while supplies last,\" \"limited time offer\").",
+      "fields": ["title", "bullets", "description"], "tier": "T1", "impact": "compliance",
+      "check": { "type": "banned_terms", "terms": ["order now", "order today", "while supplies last", "limited time", "before this deal ends", "don't miss out"] }
+    },
+    {
+      "id": "AMZ-RESTRICT-03", "section": "Prohibited / Restricted", "name": "No guarantees or warranties language",
+      "text": "No guarantees/warranties language unless it reflects an actual registered Amazon program (e.g. do not self-declare \"100% money-back guarantee\").",
+      "fields": ["title", "bullets", "description"], "tier": "T1", "impact": "compliance",
+      "check": { "type": "banned_terms", "terms": ["money back", "money-back", "satisfaction guaranteed", "100% guaranteed", "100% satisfaction", "guarantee", "guaranteed", "no questions asked"] }
+    },
+    {
+      "id": "AMZ-RESTRICT-04", "section": "Prohibited / Restricted", "name": "No unverifiable superlatives",
+      "text": "No unverifiable superlatives (\"#1 best-selling,\" \"best in the world\") without substantiation.",
+      "fields": ["title", "bullets", "description"], "tier": "T1", "impact": "compliance",
+      "check": { "type": "banned_terms", "terms": ["#1", "best", "best-selling", "best tasting", "world's", "finest", "amazing", "incredible", "never break", "indestructible"], "patterns": ["\\bthe only\\b"] }
+    },
+    {
+      "id": "AMZ-RESTRICT-05", "section": "Prohibited / Restricted", "name": "No reviews or testimonials in content",
+      "text": "No reviews/testimonials referenced in content (\"5-star rated by customers,\" \"customers love it\").",
+      "fields": ["title", "bullets", "description"], "tier": "T1", "impact": "compliance",
+      "check": { "type": "banned_terms", "terms": ["5 star", "5-star", "five star", "star rated", "rated by our customers", "customers love", "dogs love", "#1 rated", "top rated"] }
+    },
+    {
+      "id": "AMZ-RESTRICT-06", "section": "Prohibited / Restricted", "name": "No competitor mentions",
+      "text": "No competitor mentions (brand names of other sellers/products) in title, bullets, or description.",
+      "fields": ["title", "bullets", "description"], "tier": "T2", "impact": "compliance",
+      "check": { "type": "competitor_brand", "criterion": "Does the copy name another seller's brand?" }
+    },
+    {
+      "id": "AMZ-RESTRICT-07", "section": "Prohibited / Restricted", "name": "No seller contact info or external links",
+      "text": "No seller/company contact information or external links.",
+      "fields": ["title", "bullets", "description"], "tier": "T1", "impact": "compliance",
+      "check": { "type": "banned_terms", "terms": [], "patterns": ["https?://", "www\\.[\\w.]+", "[\\w.]+@[\\w.]+\\.[a-z]{2,}"] }
+    },
+
+    {
+      "id": "AMZ-KW-01", "section": "Keywords & Backend Search Terms", "name": "Backend search terms",
+      "text": "Backend search terms should complement (not repeat) the front-end title/bullets, stay under the platform's character limit, and avoid duplicate or irrelevant terms. Not directly assessed by this skill.",
+      "fields": ["backend_keywords"], "tier": "T3", "impact": "discoverability",
+      "check": { "type": "gap_signal", "reason": "The supplied data has no backend keyword field, and the ruleset itself marks this as out of scope for the skill." }
+    }
+  ]
+}
